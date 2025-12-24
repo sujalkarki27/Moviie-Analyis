@@ -8,6 +8,14 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from sklearn.model_selection import train_test_split
 
+df = pd.read_csv("Moviedata.csv", encoding="latin1")
 
+df.head()
+df.info()
+
+df = df.dropna(subset=['Name', 'Year', 'Duration', 'Votes', 'Rating'])
+print("After dropna:", df.shape)
+df = df.drop_duplicates(subset=['Name', 'Year', 'Director'], keep='first')
+print("After dropping duplicates:", df.shape)
 
 
