@@ -18,4 +18,10 @@ print("After dropna:", df.shape)
 df = df.drop_duplicates(subset=['Name', 'Year', 'Director'], keep='first')
 print("After dropping duplicates:", df.shape)
 
+# --- Clean Year ---
+df['Year'] = df['Year'].astype(str).str.extract(r'(\d{4})')
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+df['Year'] = df['Year'].fillna(df['Year'].median()).astype(int)
+
+
 
